@@ -3,6 +3,7 @@
 <head>
 <title>חמודי · חומוסייה בעכו</title>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me https://api.whatsapp.com mailto: tel:; upgrade-insecure-requests">
 <script>document.documentElement.lang="he";document.documentElement.dir="rtl";</script>
 <meta name="description" content="חמודי, חומוסייה שכונתית בעכו: העצמאות 29, פינת הארבעה, ליד תחנת הרכבת. חומוס פול, משוושה, פיתות חמות, ועם כל חומוס צלחת פלאפל חם שמגיעה לבד. פתוח כל יום מ-08:00.">
 <meta name="theme-color" content="#fff4e0">
@@ -23,7 +24,6 @@
 <meta name="twitter:image" content="https://quorixsh-coder.github.io/hamudi-akko/hero.webp">
 <!-- בעת העלאה לדומיין: להחליף og:image ו-canonical לכתובות מלאות (https://domain/...) — וואטסאפ לא מציג תמונה בנתיב יחסי -->
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Restaurant","name":"חמודי","alternateName":"Hamudi","description":"חומוסייה שכונתית בעכו, ליד תחנת הרכבת","image":"https://quorixsh-coder.github.io/hamudi-akko/hero.webp","telephone":"+972-4-991-7606","servesCuisine":["חומוס","מזרח תיכוני"],"address":{"@type":"PostalAddress","streetAddress":"העצמאות 29","addressLocality":"עכו","addressCountry":"IL"},"hasMap":"https://www.google.com/maps/place/?q=place_id:ChIJc-r4s1XIHRURLO-Q7inC8XY","sameAs":["https://www.facebook.com/132832493467206"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Saturday"],"opens":"08:00","closes":"19:10"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"08:00","closes":"17:10"}]}
@@ -491,13 +491,28 @@ html.a-still *,html.a-still *::before,html.a-still *::after{animation:none!impor
   .hero .p5{left:2%}
   .hero .p6{right:2%}
 }
+/* v6-fix1 a11y-corner */
+.a11yb{width:40px;height:40px;opacity:.9;box-shadow:2px 2px 0 var(--ink)}
+.a11yb::before{content:"";position:absolute;inset:-7px;border-radius:50%}
+.a11yb:hover,.a11yb:focus-visible,.a11yb[aria-expanded="true"],html.a11y-contrast .a11yb{opacity:1}
+.a11yb:focus-visible{outline:3px solid #1565ff;outline-offset:2px;box-shadow:0 0 0 2px #fff}
+.a11yb svg{width:20px;height:20px}
+@media (min-width:900px){.a11yb{width:44px;height:44px}.a11yb svg{width:22px;height:22px}}
+
+.a11yb{bottom:max(10px,env(safe-area-inset-bottom,0px));inset-inline-end:max(10px,env(safe-area-inset-left,0px))}
+.a11yp{bottom:calc(var(--sb) + max(10px,env(safe-area-inset-bottom,0px)) + 50px);inset-inline-end:max(10px,env(safe-area-inset-left,0px))}
+footer{padding-bottom:calc(var(--sb) + 64px + env(safe-area-inset-bottom,0px))}
+@media (min-width:900px){.a11yp{bottom:calc(var(--sb) + max(10px,env(safe-area-inset-bottom,0px)) + 54px)}}
+.strip .a11yb{position:relative;inset:auto;transform:none;transition:none;flex:none;z-index:auto}
+html.strip-on .a11yp{bottom:calc(var(--sb) + 10px + env(safe-area-inset-bottom,0px));inset-inline-end:max(var(--gx),calc(50% - 380px))}
+/* /v6-fix1 */
 </style>
 
 <div dir="rtl">
 <a class="skip" href="#main">דלג לתוכן</a>
 
 <header class="hdr" id="hdr">
-  <div class="demo">הצעת עיצוב לאתר של מסעדת חמודי · גרסת הדגמה, הזמנות ובקשות לא נשלחות</div>
+  <div class="demo">אתר לדוגמה שהוכן עבור מסעדת חמודי. אינו האתר הרשמי של העסק עד לאישורו.</div>
   <div class="bar">
     <a class="logo" href="#top" aria-label="חמודי, לראש העמוד"><span class="mk ging" aria-hidden="true"></span><b>חמודי</b></a>
     <nav class="nav" aria-label="ניווט ראשי">
@@ -639,9 +654,9 @@ html.a-still *,html.a-still *::before,html.a-still *::after{animation:none!impor
           <div class="stepnav"><button class="pill big" type="button" data-prev>חזרה</button><span style="display:flex;gap:10px;flex-wrap:wrap"><button class="pill grn big" type="button" id="gAdd">הכל לשולחן שלי</button><button class="pill" type="button" id="gCopy">העתקת התוכנית</button></span></div>
           <form class="form" id="gForm" novalidate>
             <h4>להודיע למסעדה שאתם באים</h4>
-            <div class="f2"><div><label for="gName">שם</label><input id="gName" autocomplete="name" maxlength="60" required></div><div><label for="gPhone">טלפון</label><input id="gPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="15" required dir="ltr"></div></div>
+            <div class="f2"><div><label for="gName">שם</label><input id="gName" autocomplete="name" maxlength="60" required></div><div><label for="gPhone">טלפון</label><input id="gPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="15" pattern="0[0-9 \-]{8,11}" required dir="ltr"></div></div>
             <div class="f2"><div><label for="gDate">תאריך</label><input id="gDate" type="date"></div><div><label for="gTime">שעה</label><input id="gTime" type="time" value="13:00"></div></div>
-            <label class="consent"><input type="checkbox" id="gOk" required><span>אני מאשר/ת שהפרטים ישמשו רק לטיפול בהזמנה. <button type="button" data-legal="privacy">מדיניות פרטיות</button></span></label>
+            <label class="consent"><input type="checkbox" id="gOk" required><span>אני מאשר/ת שהפרטים ישמשו לטיפול בהזמנה בלבד. <button type="button" data-legal="privacy">מדיניות פרטיות</button></span></label>
             <button class="pill red big" type="submit">שליחת הבקשה</button>
             <div class="vh" aria-hidden="true"><label>חברה<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
             <p class="msg" id="gMsg" role="status" aria-live="polite"></p>
@@ -692,19 +707,19 @@ html.a-still *,html.a-still *::before,html.a-still *::after{animation:none!impor
   <div class="wrap fgrid">
     <div>
       <div class="fname" aria-hidden="true">חמודי</div>
-      <address class="biz"><b>חמודי · חומוסייה</b><br>העצמאות 29, פינת הארבעה, עכו<br>טלפון: <span class="ltr">04-991-7606</span><br>ח.פ./ע.מ.: <span class="ph">יעודכן ע״י בעל העסק</span></address>
+      <address class="biz"><b>חמודי · חומוסייה</b><br>העצמאות 29, פינת הארבעה, עכו<br>טלפון: <span class="ltr">04-991-7606</span><br>ח.פ./ע.מ.: <span class="ph">[לעדכון ע״י בעל העסק]</span></address>
     </div>
     <div style="display:grid;gap:16px">
       <div class="legal" role="group" aria-label="מידע משפטי ונגישות">
         <button class="pill" type="button" data-legal="privacy">פרטיות ועוגיות</button>
         <button class="pill" type="button" data-legal="terms">תנאי שימוש וביטולים</button>
         <button class="pill" type="button" data-legal="a11y">הצהרת נגישות</button>
-        <button class="pill" type="button" data-legal="images">תמונות וקרדיטים</button>
+        <button class="pill" type="button" data-legal="images">תמונות וזכויות</button>
       </div>
       <div class="fine">
-        <p>אתר הדגמה שעוצב כהצעה לעסק. אינו האתר הרשמי של מסעדת חמודי.</p>
-        <p>כל התמונות באתר הן תמונות המחשה ואינן מצולמות במסעדה. המחירים להמחשה בלבד.</p>
-        <p>הציטוטים מביקורות אמיתיות בגוגל ובטריפאדוויזר, בתרגום חופשי.</p>
+        <p>אתר לדוגמה שהוכן עבור מסעדת חמודי. אינו האתר הרשמי של העסק עד לאישורו.</p>
+        <p>כל התמונות באתר הן תמונות להמחשה ואינן מצולמות במסעדה. המחירים להמחשה בלבד.</p>
+        <p>הציטוטים מתוך ביקורות אמיתיות בגוגל ובטריפאדוויזר, בתרגום חופשי.</p>
       </div>
     </div>
   </div>
@@ -742,57 +757,65 @@ html.a-still *,html.a-still *::before,html.a-still *::after{animation:none!impor
 <dialog class="dlg" id="legalDlg" aria-labelledby="lgTitle">
   <div class="dlg-h"><h2 id="lgTitle">מידע</h2><button class="x" type="button" data-x aria-label="סגירה"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="legal-tabs" id="lgTabs">
-    <button class="pill" type="button" data-lg="privacy">פרטיות</button><button class="pill" type="button" data-lg="terms">תנאי שימוש</button><button class="pill" type="button" data-lg="a11y">נגישות</button><button class="pill" type="button" data-lg="images">תמונות</button>
+    <button class="pill" type="button" data-lg="privacy">פרטיות</button><button class="pill" type="button" data-lg="terms">תנאי שימוש</button><button class="pill" type="button" data-lg="cancel">ביטולים</button><button class="pill" type="button" data-lg="a11y">נגישות</button><button class="pill" type="button" data-lg="images">תמונות וזכויות</button>
   </div>
   <div class="dlg-b legal-b" id="lgBody"></div>
 </dialog>
 
 <template id="lg-privacy">
-  <h3>בקצרה</h3>
-  <p>זהו אתר הדגמה. הוא לא אוסף, לא שומר ולא שולח שום פרט אישי, והטפסים בו לא נשלחים לשום מקום.</p>
-  <h3>באתר האמיתי: מה נאסף ולמה</h3>
-  <ul><li>בהזמנה לאיסוף או לשולחן: שם, טלפון, שעה ותוכן ההזמנה.</li><li>בהודעה על קבוצה: שם, טלפון, תאריך, שעה ומספר סועדים.</li><li>הפרטים משמשים רק להכנת ההזמנה ולאישור טלפוני, נשמרים רק לזמן הטיפול בהזמנה, ולא נמסרים לאף גורם אחר ולא משמשים לפרסום.</li></ul>
-  <h3>עיון ומחיקת מידע</h3>
-  <p>אפשר לבקש לעיין בפרטים או למחוק אותם בכל עת, בטלפון של המסעדה: <span dir="ltr">04-991-7606</span>.</p>
-  <h3>עוגיות ואחסון בדפדפן</h3>
-  <p>האתר לא משתמש בעוגיות מעקב, פרסום או סטטיסטיקה, ולכן אין באנר עוגיות. לנוחותכם בלבד נשמרים בדפדפן שלכם (localStorage) תוכן ״השולחן שלי״ והגדרות הנגישות. המידע לא יוצא מהמכשיר.</p>
+  <h3>מדיניות פרטיות</h3>
+  <p><b>זהו אתר הדגמה: הוא לא אוסף, לא שומר ולא שולח שום פרט אישי, והטפסים בו לא נשלחים לשום מקום.</b></p><p><b>מי אחראי על המידע:</b> חמודי · חומוסייה, ח.פ./ע.מ. <span class="ph">[לעדכון ע״י בעל העסק]</span>, העצמאות 29, פינת הארבעה, עכו. טלפון <span dir="ltr">04-991-7606</span>.</p>
+  <p><b>מה נאסף:</b> רק מה שממלאים בטופס ההזמנה או ההודעה על קבוצה: שם, טלפון, שעה ותוכן ההזמנה (בהודעה על קבוצה גם תאריך ומספר סועדים). הערה למנה, אם כתבתם. לא נאסף שום מידע נוסף, ואין צורך בהרשמה.</p>
+  <p><b>למה ועל איזה בסיס:</b> רק כדי לטפל בהזמנה שביקשתם: לאשר, להכין ולחזור אליכם. הבסיס לשימוש הוא הבקשה שלכם. אין חובה חוקית למסור את הפרטים, אבל בלעדיהם לא נוכל לטפל בהזמנה.</p>
+  <p><b>מי מקבל את המידע:</b> רק המסעדה, דרך טלפון או וואטסאפ. הודעת וואטסאפ עוברת דרך שירות WhatsApp, לפי התנאים שלו. המידע לא נמכר, לא מועבר לאחרים ולא משמש לשיווק או לפרסום.</p>
+  <p><b>כמה זמן נשמר:</b> עד סיום הטיפול בהזמנה, ולכל היותר 90 יום <span class="ph">[לעדכון ע״י בעל העסק]</span>, ואז נמחק.</p>
+  <p><b>הזכויות שלכם:</b> לעיין במידע שנשמר עליכם, לבקש לתקן אותו או למחוק אותו. פונים בטלפון <span dir="ltr">04-991-7606</span>, ונטפל בבקשה בהקדם.</p>
+  <p><b>עוגיות ומעקב:</b> אין באתר עוגיות מעקב, אין כלי אנליטיקה ואין פיקסלים של פרסום, ולכן אין באנר עוגיות. הבקשה החיצונית היחידה היא לגופנים מ־Google Fonts (Varela Round, Secular One ו־Rubik), ולכן Google מקבלת את כתובת ה־IP של הדפדפן. הדפדפן שלכם שומר אצלו בלבד (localStorage) רק את תוכן ״השולחן שלי״ (המנות שבחרתם, בלי שם וטלפון) ואת הגדרות הנגישות לנוחות. אפשר למחוק זאת בניקוי נתוני האתר בדפדפן.</p>
   <p><button class="pill" type="button" id="wipe">מחיקת הנתונים השמורים בדפדפן</button> <span class="msg" id="wipeMsg" role="status"></span></p>
-  <h3>צדדים שלישיים</h3>
-  <ul><li>Google Fonts: הגופנים נטענים משרתי Google, שמקבלים את כתובת ה-IP שלכם כמו בכל טעינת קובץ.</li><li>Google Maps, Waze ו-Facebook: קישורים בלבד. שום דבר לא נטען מהם עד שלוחצים.</li><li>אין ספריות אנימציה או סקריפטים חיצוניים: כל האנימציות כתובות באתר עצמו.</li></ul>
   <p class="note">עודכן: נובמבר 2026.</p>
 </template>
 <template id="lg-terms">
-  <h3>מחירים וזמינות</h3>
-  <p>המחירים, המנות והזמינות נקבעים על ידי המסעדה. המחירים באתר להמחשה בלבד, והתמונות הן תמונות המחשה.</p>
-  <h3>הזמנות</h3>
-  <ul><li>הזמנה נחשבת סופית רק אחרי אישור טלפוני מהמסעדה.</li><li>התשלום במקום. אין דמי משלוח, דמי שירות או עמלות נסתרות: האתר מציע איסוף עצמי או הזמנה לשולחן בלבד.</li><li>שום תוספת לא מסומנת מראש. מה שמופיע ב״שולחן שלי״ הוא רק מה שבחרתם.</li></ul>
-  <h3>תשלום</h3>
-  <p>האתר לא אוסף פרטי כרטיס אשראי ולא גובה תשלום. משלמים רק במסעדה, ובעתיד אולי דרך ספק סליקה חיצוני ומורשה.</p>
+  <h3>תנאי שימוש</h3>
+  <ul>
+  <li>המידע באתר כללי ועשוי להשתנות.</li>
+  <li>המחירים, המנות, שעות הפתיחה והזמינות נקבעים על ידי המסעדה ויכולים להשתנות ללא הודעה מוקדמת. המחירים באתר להמחשה בלבד ואינם הצעה מחייבת. הקובע הוא מה שנמסר לכם באישור.</li>
+  <li>תמונות שמסומנות ״להמחשה״ נועדו להמחשה בלבד, והמוצר בפועל עשוי להיראות אחרת.</li>
+  <li>הזמנה מחייבת רק אחרי שהמסעדה אישרה אותה בטלפון או בוואטסאפ. הזמינות אינה מובטחת.</li>
+  <li>התשלום במקום. אין דמי משלוח, דמי שירות או עמלות נסתרות, ושום תוספת לא מסומנת מראש.</li><li>האתר לא אוסף פרטי כרטיס אשראי ולא גובה תשלום.</li><li>ככל שהחוק מתיר, העסק אינו אחראי לנזק שנגרם מתקלה או מהשבתה של האתר, או מטעות הקלדה במחיר או בפרט אחר. טעות ברורה אינה מחייבת.</li>
+  <li>הדין החל הוא דין מדינת ישראל. סמכות השיפוט לבתי המשפט במחוז <span class="ph">[לעדכון ע״י בעל העסק] (למשל: מחוז חיפה)</span>.</li>
+  </ul>
   <h3>ביטול הזמנה</h3>
-  <p>ביטול הזמנה – בטלפון <span dir="ltr">04-991-7606</span> עד <span class="ph">[X דקות]</span> לפני שעת האיסוף. <span class="ph">נוסח לדוגמה, לאישור בעל העסק</span></p>
-  <h3>ביקורות</h3>
-  <p>הציטוטים באתר לקוחים מביקורות אמיתיות בגוגל ובטריפאדוויזר, בתרגום חופשי ועם ציון המקור. הדירוג (4.5, כ-1,000 ביקורות) לפי Google.</p>
-  <h3>כללי</h3>
-  <p>זהו אתר הדגמה שעוצב כהצעה לעסק, ואינו האתר הרשמי של מסעדת חמודי.</p>
+  <p>הזמנה נחשבת סופית רק אחרי אישור בטלפון או בוואטסאפ.</p>
+  <p><b>איך מבטלים:</b> בטלפון <span dir="ltr">04-991-7606</span>. עד כמה זמן לפני שעת האיסוף אפשר לבטל: <span class="ph">[לעדכון ע״י בעל העסק]</span>.</p>
+  <p>ביטול עסקה ייעשה בכפוף לחוק הגנת הצרכן. ייתכן שמזון שהוכן במיוחד לפי הזמנה אינו כלול בזכות הביטול לפי החוק.</p>
+</template>
+<template id="lg-cancel">
+  <h3>ביטול הזמנה</h3>
+  <p>הזמנה נחשבת סופית רק אחרי אישור בטלפון או בוואטסאפ.</p>
+  <p><b>איך מבטלים:</b> בטלפון <span dir="ltr">04-991-7606</span>. עד כמה זמן לפני שעת האיסוף אפשר לבטל: <span class="ph">[לעדכון ע״י בעל העסק]</span>.</p>
+  <p>ביטול עסקה ייעשה בכפוף לחוק הגנת הצרכן. ייתכן שמזון שהוכן במיוחד לפי הזמנה אינו כלול בזכות הביטול לפי החוק.</p>
 </template>
 <template id="lg-a11y">
   <h3>הצהרת נגישות</h3>
-  <p>אנחנו רוצים שכל אחד יוכל להשתמש באתר. האתר נבנה במטרה לעמוד בתקן הישראלי ת״י 5568 ובהנחיות WCAG 2.1 ברמה AA.</p>
-  <h3>מה עשינו</h3>
-  <ul><li>מבנה כותרות היררכי ואזורים סמנטיים (כותרת, ניווט, תוכן, כותרת תחתונה), וקישור ״דלג לתוכן״.</li><li>הפעלה מלאה במקלדת, מסגרת פוקוס בולטת, וחלונות שנסגרים ב-Esc ושומרים את הפוקוס בתוכם.</li><li>טקסט חלופי לכל תמונה, וניגודיות צבעים של 4.5:1 לפחות לטקסט רגיל.</li><li>תפריט נגישות (כפתור בפינה): הגדלת טקסט, ניגודיות גבוהה, עצירת אנימציות, הדגשת קישורים וגופן קריא. ההגדרות נשמרות בדפדפן.</li><li>כיבוד הגדרת ״הפחתת תנועה״ של מערכת ההפעלה.</li></ul>
-  <h3>נגישות המקום</h3>
-  <p>מידע על נגישות המסעדה עצמה (כניסה, שירותים, חניה): <span class="ph">יעודכן ע״י בעל העסק</span></p>
-  <h3>נתקלתם בבעיה?</h3>
-  <p>נשמח לשמוע ולתקן. פניות בנושא נגישות: בטלפון <span dir="ltr">04-991-7606</span>. רכז/ת נגישות: <span class="ph">יעודכן</span></p>
-  <p class="note">עודכן: 2 בנובמבר 2026.</p>
+  <p>אנחנו פועלים להנגשת האתר של חמודי · חומוסייה לפי תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע״ג-2013, ולפי התקן הישראלי ת״י 5568 ברמה AA.</p>
+  <p><b>מה נעשה באתר:</b></p>
+  <ul><li>מבנה כותרות היררכי ואזורים סמנטיים (כותרת, ניווט, תוכן, כותרת תחתונה), וקישור ״דלג לתוכן״.</li><li>הפעלה מלאה במקלדת, מסגרת פוקוס בולטת, וחלונות שנסגרים ב־Esc ושומרים את הפוקוס בתוכם.</li><li>טקסט חלופי לתמונות וניגודיות צבעים של 4.5:1 לפחות לטקסט רגיל.</li><li>תפריט נגישות (כפתור בפינה): הגדלת טקסט, ניגודיות גבוהה, עצירת אנימציות, הדגשת קישורים וגופן קריא. ההגדרות נשמרות בדפדפן.</li><li>כיבוד הגדרת ״הפחתת תנועה״ של מערכת ההפעלה.</li></ul>
+  <p><b>מגבלות ידועות:</b></p>
+  <ul><li>האנימציות של המנות ״הנוחתות״ על השולחן הן קישוט. אפשר לעצור אותן בתפריט הנגישות.</li><li>קישורים חיצוניים (Google Maps, Waze, Facebook) מובילים לאתרים שאינם בשליטתנו.</li><li>האתר טרם נבדק על ידי מורשה נגישות. אם משהו לא עובד לכם, נשמח לשמוע.</li></ul>
+  <p><b>רכז/ת נגישות:</b> שם <span class="ph">[לעדכון ע״י בעל העסק]</span>, טלפון <span class="ph">[לעדכון ע״י בעל העסק]</span>. אפשר לפנות גם לטלפון העסק <span dir="ltr">04-991-7606</span>. נתקלתם בבעיה? ספרו לנו ונתקן.</p>
+  <p><b>נגישות המקום:</b> <span class="ph">[לעדכון ע״י בעל העסק] (כניסה, חניית נכים, שירותים נגישים)</span></p>
+  <p>ההצהרה עודכנה: נובמבר 2026.</p>
 </template>
 <template id="lg-images">
-  <h3>תמונות</h3>
-  <p>כל תמונות האוכל והמסעדה באתר הן <b>תמונות המחשה</b> על פי תיאורים מביקורות, ואינן מצולמות במסעדה. תמונות של העסק עצמו: <span class="ph">אין עדיין, יוחלפו בצילומים של המסעדה</span>.</p>
-  <h3>מידע</h3>
-  <p>תיאור המקום לפי ביקורות גולשים ואתר humus101. דירוג וכמות ביקורות לפי Google, צ׳ק-אין לפי Facebook. שעות הפתיחה לפי Google.</p>
-  <h3>רישיונות</h3>
-  <ul><li>גופנים: Varela Round, Secular One ו-Rubik, דרך Google Fonts, ברישיון SIL Open Font License.</li><li>אייקונים: ציורי SVG פשוטים שנכתבו במיוחד לאתר, בתוך הקוד.</li><li>אנימציות וקוד: נכתבו במיוחד לאתר, בלי ספריות צד שלישי.</li></ul>
+  <h3>קניין רוחני ותמונות</h3>
+  <ul>
+  <li>תמונות האוכל באתר הן תמונות להמחשה ואינן מצולמות במסעדה. תמונות של העסק עצמו: אין עדיין, יוחלפו בצילומים של המסעדה. השימוש בהן באישור בעל העסק <span class="ph">[לעדכון ע״י בעל העסק] (אישור בעל העסק)</span>.</li>
+  <li>תמונות שמסומנות ״להמחשה״ אינן מתעדות מוצר מסוים של העסק.</li>
+  <li>הציטוטים לקוחים מביקורות אמיתיות בגוגל ובטריפאדוויזר, בתרגום חופשי ועם ציון המקור, בלי שמות. הדירוג (4.5, כ־1,000 ביקורות) לפי Google. תיאור המקום לפי ביקורות גולשים ואתר humus101, שעות הפתיחה לפי Google.</li><li>גופנים: Varela Round, Secular One ו־Rubik (Google Fonts), ברישיון SIL Open Font License.</li>
+  <li>השם, הלוגו והסימנים המסחריים של המסעדה שייכים לעסק. אין להעתיק תמונות או תכנים מהאתר בלי אישור.</li>
+  </ul>
+  <h3>רישיונות וקוד</h3>
+  <ul><li>אייקונים: ציורי SVG פשוטים שנכתבו במיוחד לאתר, בתוך הקוד.</li><li>אנימציות וקוד: נכתבו במיוחד לאתר, בלי ספריות צד שלישי.</li></ul>
   <h3>קישורי שותפים ופרסום</h3>
   <p>באתר אין קישורי שותפים (affiliate) ואין פרסום ממומן. הקישורים לגוגל מפות, Waze ופייסבוק הם לנוחות בלבד.</p>
 </template>
@@ -859,12 +882,12 @@ function closeSoft(el,setHidden){if(el.hidden)return;if(!M.ok()){setHidden();ret
 var PLUS='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
 /* ===== the table (cart) ===== */
 var cart=[];
-(function(){var raw=store("hamudi_table");if(Array.isArray(raw))cart=raw.filter(function(l){return l&&typeof l.id==="string"&&byId(l.id)&&l.qty>0&&l.qty<100;}).map(function(l){return {key:String(l.key),id:l.id,qty:l.qty|0,base:String(l.base||""),note:String(l.note||"").slice(0,80)};});})();
+(function(){var raw=store("hamudi_table");if(Array.isArray(raw))cart=raw.filter(function(l){return l&&typeof l.id==="string"&&byId(l.id)&&l.qty>0&&l.qty<100;}).map(function(l){var b=BASES.some(function(x){return x.id===l.base;})?l.base:"";var it=byId(l.id);if(it.hummus&&!b)b=BASE_OF[l.id]||"plain";var nt=clean(l.note,80);return {key:l.id+"|"+b+"|"+nt,id:l.id,qty:Math.max(1,Math.min(99,l.qty|0)),base:b,note:nt};});})();
 function save(){store("hamudi_table",cart);}
 var lastKey=null;
 function addLine(id,qty,base,note){
   var key=id+"|"+(base||"")+"|"+(note||"");var ex=null;cart.forEach(function(l){if(l.key===key)ex=l;});
-  if(ex)ex.qty=Math.min(99,ex.qty+qty);else cart.push({key:key,id:id,qty:qty,base:base||"",note:note||""});
+  qty=Math.max(1,Math.min(99,qty|0));if(ex)ex.qty=Math.min(99,ex.qty+qty);else if(cart.length<50)cart.push({key:key,id:id,qty:qty,base:base||"",note:note||""});
   lastKey=key;save();renderAll();
 }
 function lineName(l){var it=byId(l.id);if(it.hummus&&l.base&&it.id!=="msh"){var b=BASES.filter(function(x){return x.id===l.base;})[0];return b.id==="plain"?"חומוס נקי":"חומוס "+b.name.replace("עם ","");}return it.name;}
@@ -880,7 +903,8 @@ function renderStrip(){
   var mini=$("#mini");
   if(!cart.length){mini.innerHTML='<span class="empty">השולחן ריק. לוחצים + על מנה</span>';return;}
   var show=cart.slice(-6);
-  mini.innerHTML=show.map(function(l,i){return '<span class="mp" data-k="'+esc(l.key)+'" style="--r:'+ROT[i%6]+'deg">'+thumb(l)+'</span>';}).join("")+(cart.length>6?'<span class="more-n">+'+(cart.length-6)+'</span>':'');
+  mini.innerHTML=show.map(function(l,i){return '<span class="mp" style="--r:'+ROT[i%6]+'deg">'+thumb(l)+'</span>';}).join("")+(cart.length>6?'<span class="more-n">+'+(cart.length-6)+'</span>':'');
+  $$(".mp",mini).forEach(function(el,i){el.dataset.k=show[i].key;});
 }
 function renderSheet(){
   var body=$("#shBody");
@@ -889,19 +913,20 @@ function renderSheet(){
   }
   var plates=cart.map(function(l,i){return '<span class="bp" style="--r:'+ROT[i%6]+'deg">'+thumb(l)+'<i>'+l.qty+'×</i></span>';}).join("")+
     (hasHummus()?'<span class="bp free" style="--r:5deg">'+pic("falafel-plate","")+'<i>חינם</i></span>':'');
-  var lines=cart.map(function(l,i){var it=byId(l.id);return '<div class="line">'+thumb(l)+'<div class="li"><b>'+esc(lineName(l))+'</b><small>'+(it.hummus?'עם פיתות, זיתים, חמוצים ופלאפל חם':'')+(l.note?(it.hummus?' · ':'')+'הערה: '+esc(l.note):'')+'</small></div><div class="lr"><b>'+ils(it.price*l.qty)+'</b><div class="qty"><button type="button" data-inc="'+i+'" aria-label="עוד '+esc(lineName(l))+'">+</button><b>'+l.qty+'</b><button type="button" data-dec="'+i+'" aria-label="פחות '+esc(lineName(l))+'">−</button></div></div></div>';}).join("");
+  var lines=cart.map(function(l,i){var it=byId(l.id);return '<div class="line">'+thumb(l)+'<div class="li"><b>'+esc(lineName(l))+'</b><small>'+(it.hummus?'עם פיתות, זיתים, חמוצים ופלאפל חם':'')+'</small></div><div class="lr"><b>'+ils(it.price*l.qty)+'</b><div class="qty"><button type="button" data-inc="'+i+'" aria-label="עוד '+esc(lineName(l))+'">+</button><b>'+l.qty+'</b><button type="button" data-dec="'+i+'" aria-label="פחות '+esc(lineName(l))+'">−</button></div></div></div>';}).join("");
   body.innerHTML='<div class="bigtable ging" aria-hidden="true">'+plates+'</div>'+
     '<div class="lines">'+lines+(hasHummus()?'<div class="withbox">'+pic("falafel-plate","")+'<span><b>צלחת פלאפל חם</b> מגיעה עם החומוס. לא צריך להזמין, ולא מחייבים עליה.</span></div>':'')+'</div>'+
     '<div class="seg" role="group" aria-label="איך מקבלים"><button class="pill" type="button" data-m="pickup" aria-pressed="'+(pick.mode==="pickup")+'">איסוף עצמי<small>מוכן לאיסוף</small></button><button class="pill" type="button" data-m="table" aria-pressed="'+(pick.mode==="table")+'">לשולחן<small>מזמינים מראש ובאים</small></button></div>'+
     '<form class="form" id="oForm" novalidate style="border-top:0;padding-top:4px">'+
-    '<div class="f2"><div><label for="oName">שם</label><input id="oName" maxlength="40" autocomplete="name" required></div><div><label for="oPhone">טלפון</label><input id="oPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="15" required dir="ltr"></div></div>'+
+    '<div class="f2"><div><label for="oName">שם</label><input id="oName" maxlength="40" autocomplete="name" required></div><div><label for="oPhone">טלפון</label><input id="oPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="15" pattern="0[0-9 \\-]{8,11}" required dir="ltr"></div></div>'+
     '<div><label for="oTime">שעה</label><input id="oTime" type="time"></div>'+
-    '<label class="consent"><input type="checkbox" id="oOk" required><span>אני מאשר/ת שהפרטים ישמשו רק לטיפול בהזמנה. <button type="button" data-legal="privacy">מדיניות פרטיות</button></span></label>'+
-    '<p class="cancel">ההזמנה סופית רק אחרי אישור טלפוני מהמסעדה. ביטול הזמנה – בטלפון עד <span class="ph">[X דקות]</span> לפני האיסוף <span class="ph">(לאישור בעל העסק)</span>.</p>'+
+    '<label class="consent"><input type="checkbox" id="oOk" required><span>אני מאשר/ת שהפרטים ישמשו לטיפול בהזמנה בלבד. <button type="button" data-legal="privacy">מדיניות פרטיות</button></span></label>'+
+    '<p class="cancel">ההזמנה סופית רק אחרי אישור טלפוני מהמסעדה. ביטול הזמנה – בטלפון, לפי תנאי הביטול <span class="ph">[לעדכון ע״י בעל העסק]</span>.</p>'+
     '<div class="row"><span>סה״כ משוער</span><span>'+ils(total())+'</span></div><p class="note">לפי מחירי ההמחשה. תשלום במקום. בלי דמי משלוח או עמלות.</p>'+
     '<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="pill red big" type="submit" style="flex:1">שליחת ההזמנה</button><button class="pill big" type="button" id="copyOrder">העתקה</button></div>'+
     HP+'<p class="msg" id="oMsg" role="status" aria-live="polite"></p></form>';
-  /* restore values via properties (never via HTML) */
+  /* visitor notes and form values go in via text/properties (never via HTML) */
+  $$(".lines .line .li small",body).forEach(function(sm,i){var l=cart[i];if(l&&l.note)sm.textContent+=(sm.textContent?" · ":"")+"הערה: "+l.note;});
   $("#oName").value=pick.name;$("#oPhone").value=pick.phone;$("#oTime").value=pick.time;$("#oOk").checked=pick.ok;
 }
 function renderAll(){renderStrip();if($("#sheet").open)renderSheet();}
@@ -912,8 +937,8 @@ function orderText(){
 }
 on("#shBody","click",function(e){
   var d=e.target.closest("[data-dec]"),n=e.target.closest("[data-inc]"),m=e.target.closest("[data-m]");grabPick();
-  if(d){var i=+d.dataset.dec;cart[i].qty--;if(cart[i].qty<1)cart.splice(i,1);}
-  if(n){var j=+n.dataset.inc;cart[j].qty=Math.min(99,cart[j].qty+1);}
+  if(d){var i=+d.dataset.dec;if(cart[i]){cart[i].qty--;if(cart[i].qty<1)cart.splice(i,1);}}
+  if(n){var j=+n.dataset.inc;if(cart[j])cart[j].qty=Math.min(99,cart[j].qty+1);}
   if(m)pick.mode=m.dataset.m;
   if(d||n||m){save();renderAll();var f=$(d?'[data-dec="'+(+d.dataset.dec)+'"]':n?'[data-inc="'+(+n.dataset.inc)+'"]':'[data-m="'+pick.mode+'"]',$("#shBody"));(f||$("#sheet .x")).focus();}
   if(e.target.closest("#copyOrder"))copyText(orderText(),$("#oMsg"),"ההזמנה הועתקה. אפשר להדביק אותה בהודעה למסעדה.");
@@ -926,7 +951,7 @@ on("#shBody","submit",function(e){
   if(ph.length<9)return err("צריך טלפון, כדי שהמסעדה תאשר את ההזמנה.",$("#oPhone"));
   if(!pick.ok)return err("צריך לאשר את השימוש בפרטים לטיפול בהזמנה.",$("#oOk"));
   if(!guardOk(e.target))return;
-  success(msg,"ההזמנה מוכנה. בגרסת ההדגמה היא לא נשלחת למסעדה.");
+  success(msg,"ההזמנה מוכנה. בגרסת ההדגמה היא לא נשלחת למסעדה.");cart=[];save();renderStrip();pick={mode:pick.mode,name:"",phone:"",time:"",ok:false};["#oName","#oPhone","#oTime"].forEach(function(q){var x=$(q);if(x)x.value="";});$("#oOk").checked=false;
 });
 
 /* ===== drop onto the table ===== */
@@ -1011,7 +1036,7 @@ function copyText(text,el,ok){
 on("#copyPh","click",function(){var b=this;try{navigator.clipboard.writeText(CONFIG.phone).then(function(){b.textContent="הועתק ✓";},function(){b.textContent="סמנו את המספר";});}catch(x){b.textContent="סמנו את המספר";}});
 
 /* legal dialog */
-var LG_T={privacy:"פרטיות ועוגיות",terms:"תנאי שימוש",a11y:"הצהרת נגישות",images:"תמונות, קרדיטים ורישיונות"};
+var LG_T={privacy:"פרטיות ועוגיות",terms:"תנאי שימוש",cancel:"ביטולים",a11y:"הצהרת נגישות",images:"קניין רוחני, תמונות ורישיונות"};
 function showLegal(k){$("#lgTitle").textContent=LG_T[k];var b=$("#lgBody");b.textContent="";b.appendChild($("#lg-"+k).content.cloneNode(true));b.scrollTop=0;
   $$("#lgTabs [data-lg]").forEach(function(t){t.setAttribute("aria-pressed",t.dataset.lg===k?"true":"false");});}
 function openLegal(k,from){var d=$("#legalDlg"),wasOpen=d.open;showLegal(k);if(!wasOpen){var sh=$("dialog[open]");if(sh&&sh!==d){grabPick();sh.close();from=$("#tblBtn");}openDlg(d,from);}}
@@ -1152,6 +1177,11 @@ safe("bob",function(){var fb=$(".freeb");if(fb&&"IntersectionObserver" in window
 
 safe("strip",function(){renderStrip();stripOn();});
 })();
+/* v6-fix1: while the order strip is showing, the a11y button lives inside it (never floats over menu cards) */
+(function(){var b=document.getElementById("a11yBtn"),st=document.getElementById("strip"),r=document.documentElement;if(!b||!st)return;var home=b.parentNode,next=b.nextSibling;
+function dock(){var on=r.classList.contains("strip-on"),inS=b.parentNode===st;if(on===inS)return;var f=document.activeElement===b;if(on)st.appendChild(b);else home.insertBefore(b,next);if(f)b.focus({preventScroll:true});}
+new MutationObserver(dock).observe(r,{attributes:true,attributeFilter:["class"]});dock();})();
+/* /v6-fix1-js */
 </script>
 </div>
 
